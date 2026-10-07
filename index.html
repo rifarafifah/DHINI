@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <title>
+   Birthday Countdown ✨
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet"/>
+  <style>
+   *{box-sizing:border-box} :root{--pink:#e66ca8;--ink:#6a3b63;--paper:#fffaf7} html,body{margin:0;min-height:100%;font-family:'DM Sans',sans-serif;color:var(--ink)} body{min-height:100vh;overflow-x:hidden;background:linear-gradient(145deg,#ffe7f2,#fff7df 50%,#eadfff);transition:background .8s}.app{min-height:100vh;padding:70px 18px 90px;position:relative;isolation:isolate;overflow:hidden}.aurora{position:fixed;inset:-20%;z-index:-3;background:radial-gradient(circle at 20% 25%,#fff 0 7%,transparent 27%),radial-gradient(circle at 75% 20%,#ffb9dc88 0 8%,transparent 27%),radial-gradient(circle at 60% 80%,#d8c8ff99 0 8%,transparent 28%);filter:blur(20px);animation:breathe 9s ease-in-out infinite alternate}.grain{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}.floaty{position:fixed;z-index:-1;pointer-events:none;opacity:.7;filter:drop-shadow(0 5px 8px #b45d8c22);animation:float 5s ease-in-out infinite}.stage{width:min(700px,100%);margin:auto;padding:36px 24px;border-radius:32px;background:#ffffffad;backdrop-filter:blur(16px);box-shadow:0 24px 80px #9a4a8822;text-align:center;position:relative;overflow:hidden}.stage[hidden],.step[hidden],.error-step[hidden],.caption[hidden]{display:none!important}.stage.enter{animation:stageIn .65s cubic-bezier(.2,.8,.2,1)}h1,h2{font-family:'Fraunces',serif;line-height:1.12;margin:0 0 14px}.subtitle{margin:0 0 30px}.btn{border:0;border-radius:999px;padding:13px 21px;background:var(--pink);color:#fff;font:700 14px 'DM Sans';cursor:pointer;box-shadow:0 8px 22px #c24c842e;transition:.2s transform,.2s filter}.btn:hover{transform:translateY(-2px) scale(1.02);filter:brightness(.97)}.tiles{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}.tile{min-width:105px;padding:17px 10px;border-radius:21px;background:#fff;box-shadow:0 10px 30px #a95d8b12}.number{display:block;color:var(--pink);font-size:36px;font-weight:700;font-variant-numeric:tabular-nums}.tile-label{font-size:13px}.cat{position:fixed;bottom:12px;left:0;z-index:20;font-size:45px;cursor:pointer;user-select:none;animation:walk 11s linear infinite}.cat.paused{animation-play-state:paused}.cat-bubble{position:fixed;bottom:70px;z-index:21;padding:8px 12px;border-radius:14px;background:#fff;box-shadow:0 10px 30px #0002;font-size:13px;display:none}.step-title{font-size:22px;font-weight:700;margin:16px 0}.step-sub{margin-bottom:20px}.escape-area{position:relative;height:220px}.escape-btn{position:absolute;left:50%;top:75px;transform:translateX(-50%);white-space:nowrap}.escape-btn.pos-one{left:24%;top:130px}.escape-btn.pos-two{left:74%;top:20px}.escape-btn.pos-final{left:50%;top:80px}.dark-stage{background:#09090d;color:#f7f7f7;border:1px solid #ffffff12;box-shadow:0 0 90px #ff416c18}.error-heading{font-family:'DM Sans';color:#ff5f77;letter-spacing:.08em}.terminal{text-align:left;background:#030405;border:1px solid #27272a;border-radius:14px;padding:16px;margin:20px auto 0;max-width:500px;color:#8affb2;font:12px/1.65 monospace;min-height:130px;box-shadow:inset 0 0 30px #00ff2610}.progress-shell{height:9px;background:#25252c;border-radius:99px;overflow:hidden;margin:18px auto 8px;max-width:460px}.progress{height:100%;width:0;background:linear-gradient(90deg,#ff5f77,#ffc2d3);transition:width .3s}.glitch{animation:glitch .15s linear 8}.polaroid-wrap{height:430px;position:relative;margin-top:18px;touch-action:none}.polaroid{position:absolute;width:min(310px,82%);left:50%;top:10px;padding:12px 12px 45px;background:#fff;box-shadow:0 18px 40px #5c355233;border-radius:4px;transform:translateX(-50%) rotate(var(--rot));transition:transform .35s,opacity .35s;cursor:grab;user-select:none}.polaroid.dragging{transition:none;cursor:grabbing}.polaroid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:linear-gradient(135deg,#ffd7e9,#efe0ff)}.photo-count{position:absolute;right:14px;bottom:14px;font:600 11px 'DM Sans';opacity:.45}.polaroid .scribble{position:absolute;bottom:11px;left:0;right:0;font:700 22px 'Caveat';color:#6c4660}.gallery-hint{font-size:13px;opacity:.65}.envelope-scene{height:390px;display:grid;place-items:center;perspective:900px}.envelope{position:relative;width:min(390px,90%);height:245px;cursor:pointer;filter:drop-shadow(0 22px 25px #7b3f6628)}.env-back{position:absolute;inset:0;background:#f2a9c8;border-radius:8px}.env-front{position:absolute;inset:0;z-index:4;overflow:hidden;border-radius:8px}.env-front:before{content:"";position:absolute;left:-5%;bottom:-50%;width:70%;height:110%;background:#ffc5dc;transform:rotate(34deg)}.env-front:after{content:"";position:absolute;right:-5%;bottom:-50%;width:70%;height:110%;background:#f8b8d1;transform:rotate(-34deg)}.flap{position:absolute;z-index:5;top:0;left:0;width:100%;height:58%;background:#ef9fc1;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s}.letter-card{position:absolute;z-index:3;left:7%;bottom:7%;width:86%;height:85%;padding:25px 22px;background:var(--paper);border-radius:5px;box-shadow:0 4px 12px #0001;transition:transform .9s .25s;overflow:auto;text-align:left}.letter-card h2{text-align:center}.letter-card p{line-height:1.7}.envelope.open .flap{transform:rotateX(180deg);z-index:1}.envelope.open .letter-card{transform:translateY(-145px) scale(1.05);z-index:6}.music{position:fixed;right:16px;top:16px;z-index:30;background:#ffffffc9;color:var(--ink);border:1px solid #fff;padding:10px 14px;border-radius:999px;backdrop-filter:blur(10px);cursor:pointer;box-shadow:0 8px 30px #713b7120}.particle{position:fixed;z-index:99;pointer-events:none;animation:pop .8s ease-out forwards}.confetti{position:fixed;top:-20px;z-index:80;width:8px;height:14px;border-radius:2px;animation:fall var(--dur) linear forwards}.jumpscare{position:fixed;inset:0;z-index:120;display:none;place-items:center;background:#000}.jumpscare.show{display:grid;animation:flash .65s}.jumpscare-card{font:800 clamp(34px,8vw,90px) 'DM Sans';color:white;text-align:center;transform:rotate(-4deg)}.secret{position:fixed;inset:0;z-index:110;background:linear-gradient(145deg,#2a1730,#5f2e5a);color:white;display:none;place-items:center;padding:24px;text-align:center}.secret.show{display:grid}.secret .box{max-width:520px}.secret button{margin-top:20px}.finale{background:radial-gradient(circle at 50% 80%,#704c84 0,transparent 38%),linear-gradient(#100b20,#241333 65%,#46284c);color:#fff;min-height:500px}.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:32px 32px;opacity:.45}.final-lines{position:relative;z-index:2;padding:70px 10px}.final-lines p{opacity:0;transform:translateY(12px);animation:reveal 1s forwards}.final-lines p:nth-child(2){animation-delay:1.2s}.final-lines p:nth-child(3){animation-delay:2.4s;font:700 28px 'Fraunces'}.replay{opacity:0;animation:reveal 1s 3.6s forwards}.fade-black{position:fixed;inset:0;background:#000;z-index:100;pointer-events:none;opacity:0;transition:opacity .45s}.fade-black.on{opacity:1}@keyframes float{50%{transform:translateY(-14px) rotate(4deg)}}@keyframes breathe{to{transform:scale(1.08) rotate(2deg)}}@keyframes walk{0%{left:0;transform:scaleX(-1)}49.9%{left:calc(100% - 60px);transform:scaleX(-1)}50%{left:calc(100% - 60px);transform:scaleX(1)}100%{left:0;transform:scaleX(1)}}@keyframes stageIn{from{opacity:0;transform:translateY(22px) scale(.97);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}@keyframes pop{to{transform:translate(var(--x),var(--y)) rotate(180deg) scale(0);opacity:0}}@keyframes fall{to{transform:translateY(110vh) rotate(700deg)}}@keyframes glitch{25%{transform:translate(4px,-2px)}50%{transform:translate(-4px,2px);filter:hue-rotate(90deg)}75%{transform:translate(2px,4px)}}@keyframes flash{0%,100%{opacity:1}50%{opacity:.3}}@keyframes reveal{to{opacity:1;transform:none}}@media(max-width:600px){.app{padding-top:62px}.stage{padding:30px 15px}.tile{min-width:82px}.number{font-size:29px}.polaroid-wrap{height:390px}.envelope-scene{height:380px}.music{font-size:12px}}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.memory-chapter[hidden]{display:none!important}.chapter-kicker{text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:800;opacity:.48;margin:0 0 18px}.mini-deck{height:390px;position:relative;touch-action:none}.mini-polaroid{position:absolute;width:min(300px,82%);left:50%;top:5px;padding:11px 11px 42px;background:white;box-shadow:0 18px 45px #65374f35;transform:translateX(-50%) rotate(var(--r));transition:.35s;cursor:grab}.mini-polaroid img{width:100%;aspect-ratio:1/1;object-fit:cover}.mini-polaroid span{position:absolute;bottom:10px;left:0;right:0;font:700 21px 'Caveat'}.interlude{min-height:370px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px}.interlude span{font:700 20px 'Caveat';opacity:.6}.interlude strong{font:700 clamp(40px,9vw,68px) 'Fraunces';margin-bottom:30px;animation:softPulse 2s infinite}.film-shell{overflow-x:auto;padding:18px 0 25px;scroll-snap-type:x mandatory}.film-strip{display:flex;width:max-content;background:#17151a;padding:28px 22px;gap:18px;box-shadow:0 16px 45px #0003;position:relative}.film-strip:before,.film-strip:after{content:'••••••••••••••••••••••••••••••••••';position:absolute;left:10px;right:10px;color:#f5e8d0;font-size:15px;letter-spacing:12px;overflow:hidden;white-space:nowrap}.film-strip:before{top:2px}.film-strip:after{bottom:2px}.film-frame{width:min(250px,65vw);scroll-snap-align:center;flex:none;background:#f5efe8;padding:7px}.film-frame img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}.scrapbook{min-height:620px;background:#f7ead6;border-radius:8px;padding:35px 20px;position:relative;box-shadow:inset 0 0 40px #7b563212,0 15px 45px #70476b20;background-image:linear-gradient(#9f76550c 1px,transparent 1px);background-size:100% 28px}.scrap-photo{display:inline-block;width:42%;padding:8px 8px 30px;background:#fff;margin:10px 2%;box-shadow:0 9px 18px #5a3d3525;position:relative;transform:rotate(var(--r))}.scrap-photo:before{content:'';position:absolute;width:55px;height:18px;background:#e9d5a9cc;top:-9px;left:50%;transform:translateX(-50%) rotate(-3deg)}.scrap-photo img{width:100%;aspect-ratio:1/1;object-fit:cover}.scrap-photo small{font:700 16px 'Caveat';position:absolute;bottom:7px;left:5px;right:5px}.memory-wall{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:20px auto;max-width:520px}.wall-photo{border:0;padding:7px;background:#fff;box-shadow:0 10px 25px #5d36552a;transform:rotate(var(--r));cursor:pointer;transition:.35s}.wall-photo:last-child{grid-column:1/-1;width:48%;justify-self:center}.wall-photo img{width:100%;aspect-ratio:1/1;object-fit:cover;filter:blur(12px) grayscale(.8);transition:.45s}.wall-photo.open{transform:rotate(0) scale(1.04);z-index:2}.wall-photo.open img{filter:none}.last-photo{width:min(390px,88%);margin:24px auto;position:relative;padding:12px 12px 48px;background:#fff;box-shadow:0 22px 60px #7c476c3b;animation:lastReveal 1.2s both}.last-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}.last-glow{position:absolute;inset:-30px;z-index:-1;background:radial-gradient(circle,#ffbddd88,transparent 65%);filter:blur(15px);animation:softPulse 2s infinite}.last-title{animation:reveal 1s .5s both}.tease-overlay{position:fixed;inset:0;z-index:130;background:#050505;display:grid;place-items:center;padding:18px;animation:flash .7s}.tease-overlay img{max-width:96vw;max-height:88vh;object-fit:contain;box-shadow:0 0 80px #fff2}.tease-overlay b{position:absolute;bottom:4vh;color:#fff;font:800 clamp(24px,6vw,55px) 'DM Sans';text-shadow:0 4px 20px #000}.chapter-next{margin-top:22px}@keyframes softPulse{50%{transform:scale(1.035);opacity:.75}}@keyframes lastReveal{from{opacity:0;transform:translateY(30px) scale(.92);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}@media(max-width:600px){.scrapbook{min-height:540px}.scrap-photo{width:44%;margin:8px 1%}.mini-deck{height:360px}}
+  
+    /* =========================================================
+       PILIHAN YES / NO + POPUP PENOLAKAN
+    ========================================================= */
+    .choice-buttons{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .choice-buttons .reject{
+      background:#fff;
+      color:var(--pink);
+      border:2px solid #f3b4d2;
+      box-shadow:none;
+    }
+
+    .choice-buttons .reject:hover{
+      background:#fff3f8;
+    }
+
+    .reject-popup{
+      position:fixed;
+      inset:0;
+      z-index:200;
+      display:grid;
+      place-items:center;
+      padding:20px;
+      background:rgba(45,20,40,.35);
+      backdrop-filter:blur(8px);
+    }
+
+    .reject-popup[hidden]{
+      display:none!important;
+    }
+
+    .reject-popup-box{
+      width:min(390px,92vw);
+      padding:32px 24px;
+      background:#fffafc;
+      border:3px solid #ffc5df;
+      border-radius:28px;
+      text-align:center;
+      box-shadow:0 25px 80px rgba(105,47,83,.25);
+      animation:rejectPop .35s cubic-bezier(.2,.9,.3,1.3);
+    }
+
+    .reject-popup-box h2{
+      margin-bottom:10px;
+      color:var(--pink);
+    }
+
+    .reject-popup-box p{
+      margin-bottom:22px;
+    }
+
+    .reject-emoji{
+      margin-bottom:8px;
+      font-size:55px;
+      animation:rejectShake .5s ease;
+    }
+
+    @keyframes rejectPop{
+      from{opacity:0;transform:scale(.7) rotate(-4deg)}
+      to{opacity:1;transform:scale(1) rotate(0)}
+    }
+
+    @keyframes rejectShake{
+      0%,100%{transform:rotate(0)}
+      25%{transform:rotate(-12deg)}
+      50%{transform:rotate(12deg)}
+      75%{transform:rotate(-8deg)}
+    }
+
+   </style>
+ </head>
+ <body>
+  <div class="aurora">
+  </div>
+  <div class="grain">
+  </div>
+  <div class="fade-black" id="fade">
+  </div>
+  <div class="app" id="app">
+   <div class="floaty" data-depth=".25" style="top:10%;left:8%;font-size:34px">
+    ✨
+   </div>
+   <div class="floaty" data-depth=".5" style="top:18%;right:8%;font-size:31px;animation-delay:-2s">
+    🌸
+   </div>
+   <div class="floaty" data-depth=".35" style="top:70%;left:8%;font-size:30px;animation-delay:-1s">
+    💗
+   </div>
+   <div class="floaty" data-depth=".6" style="top:68%;right:9%;font-size:34px;animation-delay:-3s">
+    🎀
+   </div>
+   <button class="music" id="musicBtn">
+    ♫ play something
+   </button>
+    <audio id="bgMusic" loop preload="auto">
+     <source src="lagu.mp3" type="audio/mpeg"/>
+    </audio>
+   <div class="cat" id="cat" title="jangan dipencet terus">
+    🐈
+   </div>
+   <div class="cat-bubble" id="catBubble">
+    meow
+   </div>
+   <main>
+    <section class="stage" id="countdownPage">
+     <h1>
+      Something special is coming... 🎂
+     </h1>
+     <p class="subtitle">
+      Mohon ditunggu yaaww 👀💗
+     </p>
+     <div class="tiles">
+      <div class="tile">
+       <span class="number" id="hari">
+        0
+       </span>
+       <span class="tile-label">
+        Hari
+       </span>
+      </div>
+      <div class="tile">
+       <span class="number" id="jam">
+        0
+       </span>
+       <span class="tile-label">
+        Jam
+       </span>
+      </div>
+      <div class="tile">
+       <span class="number" id="menit">
+        0
+       </span>
+       <span class="tile-label">
+        Menit
+       </span>
+      </div>
+      <div class="tile">
+       <span class="number" id="detik">
+        0
+       </span>
+       <span class="tile-label">
+        Detik
+       </span>
+      </div>
+     </div>
+     <button class="btn" id="preview" style="margin-top:28px">
+      PREVIEW HALAMAN ULANG TAHUN
+     </button>
+     <p>
+      🌷
+     </p>
+    </section>
+    <section class="stage" hidden="" id="birthdayPage">
+     <h2>
+      HAPPY BIRTHDAYYYY!!! 🎂🎉💗
+     </h2>
+     <p class="subtitle">
+      AKHIRNYA BISA DIBUKAAA 😭💗
+     </p>
+     <p>
+      Ada sesuatu buat kamu...
+     </p>
+     <button class="btn" id="openGift">
+      BUKA HADIAH 🎁
+     </button>
+    </section>
+    <section class="stage" hidden="" id="jailPage">
+      <h2>🎁</h2>
+
+      <div class="step">
+       <p class="step-title">Penasaran yak? 👀</p>
+       <p class="step-sub">Pikir-pikir dulu deh...</p>
+       <div class="choice-buttons">
+        <button class="btn advance">PENASARAN 👀</button>
+        <button class="btn reject">NGGAK PENASARAN</button>
+       </div>
+      </div>
+
+      <div class="step" hidden="">
+       <p class="step-title">Serius mau dibuka? 🤨</p>
+       <p class="step-sub">Masih bisa mundur loh sebelum terkena serangan imupp...</p>
+       <div class="choice-buttons">
+        <button class="btn advance">SERIUS BANGET</button>
+        <button class="btn reject">GAMAU AH</button>
+       </div>
+      </div>
+
+      <div class="step" hidden="">
+       <p class="step-title">Janji gak bakal nyesel? 😭</p>
+       <p class="step-sub">Aku kasih kesempatan terakhir nih... jangan terlalu ber-ekspekk</p>
+       <div class="choice-buttons">
+        <button class="btn advance">JANJI 🤞</button>
+        <button class="btn reject">GAK JANJI 😭</button>
+       </div>
+      </div>
+
+      <div class="step" hidden="">
+       <p class="step-title">Hmmmm... 🤔</p>
+       <p class="step-sub">Sebenernya isi web ini nggak yang terlalu di iniin..</p>
+       <div class="choice-buttons">
+        <button class="btn advance">GAUSAH TERLALU DIINIIN!</button>
+        <button class="btn reject">MENDING KELUAR</button>
+       </div>
+      </div>
+
+      <div class="step" hidden="">
+       <p class="step-title">LANJUT AJAA NIHH?? 😭😭😭</p>
+       <p class="step-sub">Jangan kecewa yahhhh</p>
+       <div class="choice-buttons">
+        <button class="btn advance">LANJUT AJA </button>
+        <button class="btn reject">UDAHAN AJA</button>
+       </div>
+      </div>
+
+      <div class="step" hidden="">
+       <p class="step-title">Baiklah.. Kita mulai yah?? BISMILLAHHH</p>
+       <p class="step-sub">Sekarang beneran. Tinggal pencet tombol ini.</p>
+       <p class="escape-message" hidden="">EH KOK KABUR 😭</p>
+       <p class="escape-message" hidden="">WKWKWK KEJAR DONG 😭</p>
+       <p class="escape-message" hidden="">HAHAHA OKE OKE SEKARANG BENERAN 😭💗</p>
+       <div class="escape-area">
+        <button class="btn escape-btn" id="escapeBtn">-CHANN🎁</button>
+       </div>
+      </div>
+     </section>
+     <section class="stage dark-stage" hidden="" id="errorPage">
+     <div class="error-step">
+      <h2 class="error-heading">
+       SYSTEM ERROR
+      </h2>
+      <p>
+       Hadiah terlalu sulit untuk dibuka, mungkin isinya tiket umroh!
+      </p>
+      <div class="terminal" id="terminal">
+       > initializing gift.exe...
+      </div>
+      <div class="progress-shell">
+       <div class="progress" id="progress">
+       </div>
+      </div>
+      <p id="progressText">
+       Recovering gift... 0%
+      </p>
+     </div>
+    </section>
+    <section class="stage" hidden="" id="galleryPage">
+     <h2>
+      Little memories of you in my gallery 📸💗
+     </h2>
+     <div id="memoryChapters">
+      <div class="memory-chapter" id="chapterPolaroid">
+       <p class="chapter-kicker">
+        01 — little beginnings
+       </p>
+       <div class="mini-deck" id="miniDeck">
+       </div>
+       <p class="gallery-hint">
+        geser 4 foto ini ke samping ✨
+       </p>
+      </div>
+      <div class="memory-chapter" hidden="" id="chapterMore">
+       <div class="interlude">
+        <span>
+         wait...
+        </span>
+        <strong>
+         there's more.
+        </strong>
+        <button class="btn" id="moreBtn">
+         SHOW ME 👀
+        </button>
+       </div>
+      </div>
+      <div class="memory-chapter" hidden="" id="chapterFilm">
+       <p class="chapter-kicker">
+        02 — caught on film
+       </p>
+       <div class="film-shell">
+        <div class="film-strip" id="filmStrip">
+        </div>
+       </div>
+       <p class="gallery-hint">
+        geser filmnya → lalu lanjut
+       </p>
+       <button class="btn chapter-next" data-next="chapterScrap">
+        NEXT ✦
+       </button>
+      </div>
+      <div class="memory-chapter" hidden="" id="chapterScrap">
+       <p class="chapter-kicker">
+        03 — pages i'd keep
+       </p>
+       <div class="scrapbook" id="scrapbook">
+       </div>
+       <button class="btn chapter-next" data-next="chapterTease">
+        TURN THE PAGE 😭
+       </button>
+      </div>
+      <div class="memory-chapter" hidden="" id="chapterTease">
+       <p class="chapter-kicker">
+        04 — hold on...
+       </p>
+       <button class="btn" id="teaseBtn">
+        BUKA FOTO BERIKUTNYA
+       </button>
+      </div>
+      <div class="memory-chapter" hidden="" id="chapterWall">
+       <p class="chapter-kicker">
+        05 — tap every memory
+       </p>
+       <div class="memory-wall" id="memoryWall">
+       </div>
+       <p class="gallery-hint" id="wallCounter">
+        0 / 5 opened
+       </p>
+       <button class="btn" hidden="" id="wallNext">
+        ONE LAST PHOTO ♡
+       </button>
+      </div>
+      <div class="memory-chapter" hidden="" id="chapterLast">
+       <p class="chapter-kicker">
+        23 / 23
+       </p>
+       <div class="last-photo">
+        <img alt="Foto 23" src="foto23.jpg"/>
+        <div class="last-glow">
+        </div>
+       </div>
+       <h2 class="last-title">
+        and this one stays. ♡
+       </h2>
+       <p class="gallery-hint">
+        one last thing...
+       </p>
+       <button class="btn" id="galleryNext">
+        LANJUT 💌
+       </button>
+      </div>
+     </div>
+    </section>
+    <section class="stage" hidden="" id="letterPage">
+     <h2>
+      there's a letter for you 💌
+     </h2>
+     <p>
+      tap the envelope
+     </p>
+     <div class="envelope-scene">
+      <div class="envelope" id="envelope">
+       <div class="env-back">
+       </div>
+       <div class="letter-card">
+        <h2>
+         For you 💌
+        </h2>
+        <p>
+         It's your day!!💗
+        </p>
+        <p>
+         Cieee our youngest one sebenarnya sudah teteh tetehh semester akhirrrr awkwkw. Berbicara langsung aku tidak lihai, memerintah GPT paling pandai... walaupun web ini juga hasil kerja keras GPT, tapi percayalahhh kalo masih banyak campur tanganku di sini. Yah siapa tau tahun depan mah dibikinin aa-aa teknik ITB, ganteng, kaya, royal, dan mencintai secara ugal-ugalan sehingga tiada ruang bagi aku dan sahabat(GPT) untuk berkreasi seperti ini lagi. Ahh tapi itu tidaklah terlalu penting, yang terpenting hari ini adalahhh semoga, semua doa yang datang, harapan yang diucapkan, keinginan yang dipanjatkan bisa terkabul. Semoga selalu merasakan syukur setiap harinya, dipermudah, juga diperlancar segala urusannya, AAMIIN..
+        </p>
+        <p>
+         Semoga semua hal baik selalu dateng ke kamu 🌷✨
+        </p>
+        <p style="font-family:Caveat;font-size:24px;text-align:right">
+         with love ♡
+        </p>
+       </div>
+       <div class="flap">
+       </div>
+       <div class="env-front">
+       </div>
+      </div>
+     </div>
+     <button class="btn" hidden="" id="lastThing">
+      one last thing...
+     </button>
+    </section>
+    <section class="stage finale" hidden="" id="finalPage">
+     <div class="stars">
+     </div>
+     <div class="final-lines">
+      <p>
+       17 October 2026
+      </p>
+      <p>
+       another year of you.
+      </p>
+      <p>
+       I'm glad you exist. ♡
+      </p>
+      <button class="btn replay" id="replay">
+       replay everything ↻
+      </button>
+     </div>
+    </section>
+   </main>
+  </div>
+  
+  <!-- POPUP JAWABAN "NGGAK" -->
+  <div class="reject-popup" id="rejectPopup" hidden>
+    <div class="reject-popup-box">
+      <div class="reject-emoji" id="rejectEmoji">😭</div>
+      <h2 id="rejectTitle">IHH KOKK GITUU SII..</h2>
+      <p id="rejectText">harus penasaran lahhh </p>
+      <button class="btn" id="rejectClose">yaudah deh 😭</button>
+    </div>
+  </div>
+
+<div class="jumpscare" id="jumpscare">
+   <div class="jumpscare-card">
+    😭📸
+    <br/>
+    <span style="font-size:.35em">
+     MASUK DULU FOTO AIB-NYA DI SINI
+    </span>
+   </div>
+  </div>
+  <div class="secret" id="secret">
+   <div class="box">
+    <h1>
+     🐈 SECRET PAGE UNLOCKED
+    </h1>
+    <p>
+     ngapain kucingnya dipencet terus 😭
+    </p>
+    <p>
+     Di sini bisa kamu isi foto/meme/inside joke rahasia yang cuma ketemu kalau dia kepo.
+    </p>
+    <button class="btn" id="closeSecret">
+     aku tidak melihat apa-apa
+    </button>
+   </div>
+  </div>
+  <script>
+   const target=new Date('2026-10-17T00:00:00').getTime(); const pageIds=['countdownPage','birthdayPage','jailPage','errorPage','galleryPage','letterPage','finalPage'];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function showPage(id){const fade=$('#fade');fade.classList.add('on');setTimeout(()=>{pageIds.forEach(p=>document.getElementById(p).hidden=p!==id);const el=document.getElementById(id);el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter');window.scrollTo({top:0,behavior:'smooth'});fade.classList.remove('on')},430)}
+function updateCountdown(){const r=Math.max(0,target-Date.now()),s=Math.floor(r/1000);hari.textContent=Math.floor(s/86400);jam.textContent=Math.floor(s%86400/3600);menit.textContent=Math.floor(s%3600/60);detik.textContent=s%60;if(!r)showPage('birthdayPage')}updateCountdown();setInterval(updateCountdown,1000);
+function burstConfetti(){for(let i=0;i<80;i++){const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=`hsl(${Math.random()*360} 80% 75%)`;c.style.setProperty('--dur',2+Math.random()*2+'s');c.style.transform=`rotate(${Math.random()*180}deg)`;document.body.append(c);setTimeout(()=>c.remove(),4500)}}
+preview.onclick=()=>{showPage('birthdayPage');setTimeout(burstConfetti,450)};openGift.onclick=()=>showPage('jailPage');
+let step=0;const steps=$$('.step');$$('.advance').forEach(b=>b.onclick=()=>{steps[step].hidden=true;steps[++step].hidden=false});
+
+ // =========================================================
+ // JAWABAN "NGGAK" / PILIHAN SALAH
+ // =========================================================
+ const rejectPopup=document.getElementById('rejectPopup');
+ const rejectTitle=document.getElementById('rejectTitle');
+ const rejectText=document.getElementById('rejectText');
+ const rejectEmoji=document.getElementById('rejectEmoji');
+ const rejectClose=document.getElementById('rejectClose');
+
+ const rejectMessages=[
+  {emoji:'😭',title:'IHH KOKK GITUU SII..',text:'harus mau lahhh, udah dibikinin juga 😭💗'},
+  {emoji:'🤨',title:'LOHHH??',text:'kok malah pencet itu sii 😭'},
+  {emoji:'☝️',title:'MAAF YA...',text:'website ini tidak menerima jawaban tersebut 🙏'},
+  {emoji:'🙂',title:'HEHE.',text:'opsi itu sebenarnya cuma pajangan.'},
+  {emoji:'😭',title:'UDAH SEJAUH INI???',text:'MAU KABUR KE MANA WOIII 😭😭😭'}
+ ];
+
+ $$('.reject').forEach((button,index)=>{
+  button.onclick=()=>{
+   const message=rejectMessages[index];
+   rejectEmoji.textContent=message.emoji;
+   rejectTitle.textContent=message.title;
+   rejectText.textContent=message.text;
+   rejectPopup.hidden=false;
+  };
+ });
+
+ rejectClose.onclick=()=>rejectPopup.hidden=true;
+
+const escapeBtn = document.getElementById('escapeBtn');
+let escapes = 0;
+
+escapeBtn.onclick = () => {
+  if (escapes >= 3) {
+    runCrash();
+    return;
+  }
+
+  escapes++;
+
+  $$('.escape-message').forEach((message, index) => {
+    message.hidden = index !== escapes - 1;
+  });
+
+  escapeBtn.className =
+    'btn escape-btn ' +
+    (escapes === 1 ? 'pos-one' :
+     escapes === 2 ? 'pos-two' :
+     'pos-final');
+
+  if (escapes === 3) {
+    escapeBtn.textContent = 'BUKA BENERAN 🎁';
+  }
+};
+function runCrash(){showPage('errorPage');setTimeout(()=>{errorPage.classList.add('glitch');const lines=['> checking emotional firewall...','> locating birthday package...','> package found ♡','> decrypting memories...','> WARNING: too much cuteness','> retrying...'];let i=0;const ti=setInterval(()=>{if(i<lines.length)terminal.innerHTML+=`<br>${lines[i++]}`;else clearInterval(ti)},430);let pct=0;const pi=setInterval(()=>{pct+=Math.ceil(Math.random()*13);if(pct>=99){pct=99;clearInterval(pi);progressText.textContent='FAILED AT 99% 😭';terminal.innerHTML+='<br><span style="color:#ff5f77">> FATAL ERROR: user too precious</span>';setTimeout(()=>{progressText.textContent='...boong.';setTimeout(runJumpscare,900)},1000)}else progressText.textContent=`Recovering gift... ${pct}%`;progress.style.width=pct+'%'},260)},500)}
+function runJumpscare(){const j=$('#jumpscare');j.classList.add('show');setTimeout(()=>{j.classList.remove('show');showPage('galleryPage')},650)}
+const chapterIds=['chapterPolaroid','chapterMore','chapterFilm','chapterScrap','chapterTease','chapterWall','chapterLast'];
+function chapter(id){chapterIds.forEach(x=>document.getElementById(x).hidden=x!==id);}
+const miniDeck=document.getElementById('miniDeck');
+
+for(let i=4;i>=1;i--){
+ const card=document.createElement('div');
+ card.className='mini-polaroid';
+ card.style.setProperty('--r',[-3,2,-1,4][i-1]+'deg');
+ card.innerHTML=`<img src="foto${i}.jpg" alt="Foto ${i}"><span>${['little memory ♡','look at you 😭','one of my favorites','this one ♡'][i-1]}</span>`;
+ miniDeck.append(card);
+}
+
+let miniLeft=4;
+
+function getTopMiniCard(){
+ const activeCards=[...miniDeck.children].filter(card=>!card.dataset.gone);
+ return activeCards[activeCards.length-1];
+}
+
+[...miniDeck.children].forEach(card=>{
+ let startX=0;
+ let deltaX=0;
+ let dragging=false;
+
+ card.onpointerdown=e=>{
+  if(card!==getTopMiniCard()) return;
+
+  dragging=true;
+  startX=e.clientX;
+  deltaX=0;
+  card.setPointerCapture(e.pointerId);
+  card.style.zIndex='10';
+ };
+
+ card.onpointermove=e=>{
+  if(!dragging) return;
+
+  deltaX=e.clientX-startX;
+  card.style.transform=`translateX(calc(-50% + ${deltaX}px)) rotate(${deltaX/18}deg)`;
+ };
+
+ card.onpointerup=e=>{
+  if(!dragging) return;
+
+  dragging=false;
+
+  if(card.hasPointerCapture(e.pointerId)){
+   card.releasePointerCapture(e.pointerId);
+  }
+
+  if(Math.abs(deltaX)>70){
+   card.dataset.gone='1';
+   card.style.transform=`translateX(${deltaX>0?'120vw':'-120vw'}) rotate(${deltaX/7}deg)`;
+   card.style.opacity='0';
+   card.style.pointerEvents='none';
+
+   miniLeft--;
+
+   if(miniLeft===0){
+    setTimeout(()=>chapter('chapterMore'),450);
+   }
+  }else{
+   card.style.transform='translateX(-50%) rotate(var(--r))';
+   card.style.zIndex='';
+  }
+
+  deltaX=0;
+ };
+
+ card.onpointercancel=()=>{
+  dragging=false;
+  deltaX=0;
+  card.style.transform='translateX(-50%) rotate(var(--r))';
+  card.style.zIndex='';
+ };
+});
+document.getElementById('moreBtn').onclick=()=>chapter('chapterFilm');
+const film=document.getElementById('filmStrip');for(let i=5;i<=10;i++)film.insertAdjacentHTML('beforeend',`<div class="film-frame"><img src="foto${i}.jpg" alt="Foto ${i}"></div>`);
+const scrap=document.getElementById('scrapbook');for(let i=11;i<=16;i++)scrap.insertAdjacentHTML('beforeend',`<div class="scrap-photo" style="--r:${[-4,3,-2,4,-3,2][i-11]}deg"><img src="foto${i}.jpg" alt="Foto ${i}"><small>${['keep this one','hehe 😭','tiny moment','caught in 4k','soft spot ♡','page worth keeping'][i-11]}</small></div>`);
+document.querySelectorAll('.chapter-next').forEach(b=>b.onclick=()=>chapter(b.dataset.next));
+document.getElementById('teaseBtn').onclick=()=>{const o=document.createElement('div');o.className='tease-overlay';o.innerHTML='<img src="foto17.jpg" alt="Foto 17"><b>NAH LOH 😭😭😭</b>';document.body.append(o);setTimeout(()=>{o.remove();chapter('chapterWall')},1350)};
+const wall=document.getElementById('memoryWall'),counter=document.getElementById('wallCounter'),wallNext=document.getElementById('wallNext');let opened=0;for(let i=18;i<=22;i++){const b=document.createElement('button');b.className='wall-photo';b.style.setProperty('--r',[-4,3,2,-3,4][i-18]+'deg');b.innerHTML=`<img src="foto${i}.jpg" alt="Foto ${i}">`;b.onclick=()=>{if(b.classList.contains('open'))return;b.classList.add('open');opened++;counter.textContent=`${opened} / 5 opened`;if(opened===5)wallNext.hidden=false};wall.append(b)}wallNext.onclick=()=>chapter('chapterLast');document.getElementById('galleryNext').onclick=()=>showPage('letterPage');
+envelope.onclick=()=>{envelope.classList.add('open');setTimeout(()=>lastThing.hidden=false,1050)};lastThing.onclick=()=>showPage('finalPage');replay.onclick=()=>location.reload();
+// Tap/click particles
+document.addEventListener('pointerdown',e=>{if(e.target.closest('.mini-polaroid,.film-shell,.scrap-photo,.wall-photo'))return;const chars=['✦','♡','✧','⋆'];for(let i=0;i<4;i++){const p=document.createElement('span');p.className='particle';p.textContent=chars[Math.floor(Math.random()*chars.length)];p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';p.style.setProperty('--x',(Math.random()*90-45)+'px');p.style.setProperty('--y',(-30-Math.random()*70)+'px');document.body.append(p);setTimeout(()=>p.remove(),900)}});
+// Parallax
+addEventListener('pointermove',e=>{$$('.floaty').forEach(f=>{const d=+f.dataset.depth;f.style.marginLeft=(e.clientX-innerWidth/2)*d*.035+'px';f.style.marginTop=(e.clientY-innerHeight/2)*d*.035+'px'})});
+// Cat easter egg
+let catClicks=0;cat.onclick=e=>{e.stopPropagation();catClicks++;cat.classList.toggle('paused',catClicks>=3);catBubble.style.display='block';catBubble.style.left=Math.min(innerWidth-180,e.clientX)+'px';catBubble.textContent=catClicks<3?'meow':catClicks<5?'...':catClicks<10?'ngapain kucingnya dipencet terus 😭':'SECRET?!';setTimeout(()=>catBubble.style.display='none',1300);if(catClicks>=10)secret.classList.add('show')};closeSecret.onclick=()=>secret.classList.remove('show');
+// =========================================================
+// BACKGROUND MUSIC — pakai file lagu.mp3
+// =========================================================
+const bgMusic = document.getElementById('bgMusic');
+const musicButton = document.getElementById('musicBtn');
+
+bgMusic.volume = 0.35;
+
+let musicPlaying = false;
+
+musicButton.onclick = async () => {
+ if (musicPlaying) {
+  bgMusic.pause();
+  musicPlaying = false;
+  musicButton.textContent = '♫ play something';
+  return;
+ }
+
+ try {
+  await bgMusic.play();
+  musicPlaying = true;
+  musicButton.textContent = '♫ pause music ♡';
+ } catch (error) {
+  console.log('Music could not play:', error);
+ }
+};
+
+bgMusic.addEventListener('ended', () => {
+ musicPlaying = false;
+ musicButton.textContent = '♫ play something';
+});
+  </script>
+ </body>
+</html>
