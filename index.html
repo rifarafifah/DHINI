@@ -87,6 +87,27 @@
       75%{transform:rotate(-8deg)}
     }
 
+   
+    /* =========================================================
+       SECRET BONUS PHOTO
+    ========================================================= */
+    .secret-photo {
+      width: min(360px, 90%);
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+      margin: 18px auto;
+      border-radius: 20px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+      transform: rotate(-2deg);
+    }
+
+    .secret-caption {
+      margin-top: 12px;
+      font-size: 14px;
+      opacity: .9;
+    }
+
    </style>
  </head>
  <body>
@@ -437,22 +458,35 @@
    </div>
   </div>
   <div class="secret" id="secret">
-   <div class="box">
-    <h1>
-     🐈 SECRET PAGE UNLOCKED
-    </h1>
-    <p>
-     ngapain kucingnya dipencet terus 😭
-    </p>
-    <p>
-     Di sini bisa kamu isi foto/meme/inside joke rahasia yang cuma ketemu kalau dia kepo.
-    </p>
-    <button class="btn" id="closeSecret">
-     aku tidak melihat apa-apa
-    </button>
+    <div class="box">
+     <h1>
+      🐈 SECRET PAGE UNLOCKED
+     </h1>
+
+     <p>
+      ngapain kucingnya dipencet terus 😭
+     </p>
+
+     <p>
+      yaelah kepo banget... yaudah nih bonus 😭
+     </p>
+
+     <img
+      src="secret.jpg"
+      alt="Bonus secret photo"
+      class="secret-photo"
+     />
+
+     <p class="secret-caption">
+      ini hadiah buat yang kepo sampai pencet kucing berkali-kali WKWKWK
+     </p>
+
+     <button class="btn" id="closeSecret">
+      aku tidak melihat apa-apa
+     </button>
+    </div>
    </div>
-  </div>
-  <script>
+   <script>
    const target=new Date('2026-10-17T00:00:00').getTime(); const pageIds=['countdownPage','birthdayPage','jailPage','errorPage','galleryPage','letterPage','finalPage'];
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function showPage(id){const fade=$('#fade');fade.classList.add('on');setTimeout(()=>{pageIds.forEach(p=>document.getElementById(p).hidden=p!==id);const el=document.getElementById(id);el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter');window.scrollTo({top:0,behavior:'smooth'});fade.classList.remove('on')},430)}
