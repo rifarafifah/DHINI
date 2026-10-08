@@ -230,9 +230,6 @@
        </span>
       </div>
      </div>
-     <button class="btn" id="preview" style="margin-top:28px">
-      PREVIEW HALAMAN ULANG TAHUN
-     </button>
      <p>
       🌷
      </p>
@@ -536,9 +533,26 @@
    const target=new Date('2026-10-17T00:00:00').getTime(); const pageIds=['countdownPage','birthdayPage','jailPage','errorPage','galleryPage','letterPage','finalPage'];
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function showPage(id){const fade=$('#fade');fade.classList.add('on');setTimeout(()=>{pageIds.forEach(p=>document.getElementById(p).hidden=p!==id);const el=document.getElementById(id);el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter');window.scrollTo({top:0,behavior:'smooth'});fade.classList.remove('on')},430)}
-function updateCountdown(){const r=Math.max(0,target-Date.now()),s=Math.floor(r/1000);hari.textContent=Math.floor(s/86400);jam.textContent=Math.floor(s%86400/3600);menit.textContent=Math.floor(s%3600/60);detik.textContent=s%60;if(!r)showPage('birthdayPage')}updateCountdown();setInterval(updateCountdown,1000);
+let birthdayUnlocked=false;
+function updateCountdown(){
+ const r=Math.max(0,target-Date.now());
+ const s=Math.floor(r/1000);
+
+ hari.textContent=Math.floor(s/86400);
+ jam.textContent=Math.floor(s%86400/3600);
+ menit.textContent=Math.floor(s%3600/60);
+ detik.textContent=s%60;
+
+ if(!r && !birthdayUnlocked){
+  birthdayUnlocked=true;
+  showPage('birthdayPage');
+  setTimeout(burstConfetti,450);
+ }
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
 function burstConfetti(){for(let i=0;i<80;i++){const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=`hsl(${Math.random()*360} 80% 75%)`;c.style.setProperty('--dur',2+Math.random()*2+'s');c.style.transform=`rotate(${Math.random()*180}deg)`;document.body.append(c);setTimeout(()=>c.remove(),4500)}}
-preview.onclick=()=>{showPage('birthdayPage');setTimeout(burstConfetti,450)};openGift.onclick=()=>showPage('jailPage');
+openGift.onclick=()=>showPage('jailPage');
 let step=0;const steps=$$('.step');$$('.advance').forEach(b=>b.onclick=()=>{steps[step].hidden=true;steps[++step].hidden=false});
 
  // =========================================================
